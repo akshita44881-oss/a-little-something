@@ -1,39 +1,57 @@
+/* =========================
+   PASSWORD
+========================= */
+
 const PASSWORD = "chamgadar";
 
-const passwordInput = document.getElementById("passwordInput");
-const unlockButton = document.getElementById("unlockButton");
-const wrongPassword = document.getElementById("wrongPassword");
+const passwordInput =
+  document.getElementById("passwordInput");
+
+const unlockButton =
+  document.getElementById("unlockButton");
+
+const wrongPassword =
+  document.getElementById("wrongPassword");
 
 let attempts = 0;
 
 
 /* =========================
-   PAGE SWITCHING
+   PAGE SWITCH
 ========================= */
 
 function openPage(pageId) {
+
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
   });
 
-  const page = document.getElementById(pageId);
+  const target =
+    document.getElementById(pageId);
 
-  if (page) {
-    page.classList.add("active");
-    window.scrollTo(0, 0);
+  if (target) {
+    target.classList.add("active");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 }
 
 
 /* =========================
-   PASSWORD
+   CHECK PASSWORD
 ========================= */
 
 function checkPassword() {
-  const enteredPassword =
-    passwordInput.value.trim().toLowerCase();
 
-  if (enteredPassword === PASSWORD) {
+  const entered =
+    passwordInput.value
+      .trim()
+      .toLowerCase();
+
+  if (entered === PASSWORD) {
 
     wrongPassword.textContent = "";
 
@@ -44,9 +62,11 @@ function checkPassword() {
     return;
   }
 
+
   attempts++;
 
-  const box = document.querySelector(".password-box");
+  const box =
+    document.querySelector(".password-box");
 
   box.classList.remove("shake");
 
@@ -54,50 +74,73 @@ function checkPassword() {
 
   box.classList.add("shake");
 
+
   if (attempts === 1) {
+
     wrongPassword.textContent =
       "Uff bhoundu 😭 try again...";
+
   }
 
   else if (attempts === 2) {
+
     wrongPassword.textContent =
       "Dubara tosis kawroo 😭😭";
+
   }
 
   else {
+
     wrongPassword.textContent =
       "Princess... THINK HARDER 😭👑🦇";
+
   }
 
+
   passwordInput.value = "";
+
   passwordInput.focus();
 }
 
-unlockButton.addEventListener("click", checkPassword);
 
-passwordInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    checkPassword();
+unlockButton.addEventListener(
+  "click",
+  checkPassword
+);
+
+
+passwordInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+      checkPassword();
+    }
+
   }
-});
+);
 
 
 /* =========================
-   NEXT PAGE BUTTONS
+   NEXT BUTTONS
 ========================= */
 
-document.querySelectorAll("[data-next]").forEach(button => {
+document.querySelectorAll("[data-next]")
+  .forEach(button => {
 
-  button.addEventListener("click", function() {
+    button.addEventListener(
+      "click",
+      function() {
 
-    const targetPage =
-      this.getAttribute("data-next");
+        const target =
+          this.getAttribute("data-next");
 
-    openPage(targetPage);
+        openPage(target);
+
+      }
+    );
 
   });
-
-});
 
 
 /* =========================
@@ -107,12 +150,10 @@ document.querySelectorAll("[data-next]").forEach(button => {
 const startDate =
   new Date("2026-04-15T00:00:00");
 
+
 function updateCounter() {
 
   const now = new Date();
-
-  const difference =
-    now - startDate;
 
   const monthCount =
     document.getElementById("monthCount");
@@ -120,15 +161,6 @@ function updateCounter() {
   const liveCounter =
     document.getElementById("liveCounter");
 
-  if (difference < 0) {
-
-    monthCount.textContent = "0";
-
-    liveCounter.textContent =
-      "Our story is about to begin... ♡";
-
-    return;
-  }
 
   let years =
     now.getFullYear() -
@@ -138,17 +170,40 @@ function updateCounter() {
     now.getMonth() -
     startDate.getMonth();
 
-  if (now.getDate() < startDate.getDate()) {
+
+  if (
+    now.getDate() <
+    startDate.getDate()
+  ) {
+
     months--;
+
   }
 
+
   if (months < 0) {
+
     years--;
+
     months += 12;
+
   }
+
 
   const totalMonths =
     years * 12 + months;
+
+
+  monthCount.textContent =
+    Math.max(totalMonths, 0);
+
+
+  const difference =
+    Math.max(
+      now - startDate,
+      0
+    );
+
 
   const days =
     Math.floor(
@@ -156,34 +211,39 @@ function updateCounter() {
       (1000 * 60 * 60 * 24)
     );
 
+
   const hours =
     Math.floor(
-      (difference /
-      (1000 * 60 * 60)) % 24
-    );
+      difference /
+      (1000 * 60 * 60)
+    ) % 24;
+
 
   const minutes =
     Math.floor(
-      (difference /
-      (1000 * 60)) % 60
-    );
+      difference /
+      (1000 * 60)
+    ) % 60;
+
 
   const seconds =
     Math.floor(
-      (difference /
-      1000) % 60
-    );
+      difference /
+      1000
+    ) % 60;
 
-  monthCount.textContent =
-    totalMonths;
 
   liveCounter.textContent =
     `${days} days · ${hours} hours · ${minutes} minutes · ${seconds} seconds`;
 }
 
+
 updateCounter();
 
-setInterval(updateCounter, 1000);
+setInterval(
+  updateCounter,
+  1000
+);
 
 
 /* =========================
@@ -192,19 +252,20 @@ setInterval(updateCounter, 1000);
 
 const quotes = [
 
-  "He annoys me 90% of the time… but somehow knows exactly when I need him. ♡",
+  "You annoy me 90% of the time… but somehow you always know exactly when I need you. ♡",
 
-  "He has this annoying little talent of making me happy when I don't even feel like smiling. 🫶",
+  "You have this annoying little talent of making me happy when I don't even feel like smiling. 🫶",
 
-  "He is my chamgadar. Apparently, I'm his tiddi. I still haven't approved that nickname. 🙄🦇",
+  "You are my chamgadar. Apparently, I'm your tiddi. I still haven't approved that nickname. 🙄🦇",
 
-  "He loves me in ways I never thought anyone ever would. ♡",
+  "You love me in ways I never thought anyone ever would. ♡",
 
   "One second we're all lovely-dovely, the next we're roasting each other like it's our full-time job. 😭",
 
-  "Somewhere between the teasing, the chaos, and all the little things… he became the best boyfie one could ask for. ♡"
+  "Somewhere between the teasing, the chaos, and all the little things… you became the best boyfie I could've asked for. 🎀"
 
 ];
+
 
 let currentQuote = 0;
 
@@ -218,73 +279,141 @@ const nextQuote =
   document.getElementById("nextQuote");
 
 
-/* CREATE QUOTE DOTS */
+/* CREATE DOTS */
 
-quotes.forEach((quote, index) => {
+quotes.forEach(
+  function(_, index) {
 
-  const dot =
-    document.createElement("span");
+    const dot =
+      document.createElement("span");
 
-  dot.classList.add("dot");
+    dot.classList.add("dot");
 
-  if (index === 0) {
-    dot.classList.add("active");
+    if (index === 0) {
+      dot.classList.add("active");
+    }
+
+    quoteDots.appendChild(dot);
+
   }
-
-  quoteDots.appendChild(dot);
-
-});
+);
 
 
 /* CHANGE QUOTE */
 
-function changeQuote() {
+function showQuote() {
 
   quoteText.style.opacity = "0";
 
-  setTimeout(function() {
 
-    quoteText.textContent =
-      quotes[currentQuote];
+  setTimeout(
+    function() {
 
-    quoteText.style.opacity = "1";
+      quoteText.textContent =
+        quotes[currentQuote];
 
-    document.querySelectorAll(".dot")
-      .forEach(function(dot, index) {
+      quoteText.style.opacity = "1";
 
-        dot.classList.toggle(
-          "active",
-          index === currentQuote
+
+      document
+        .querySelectorAll(".dot")
+        .forEach(
+          function(dot, index) {
+
+            dot.classList.toggle(
+              "active",
+              index === currentQuote
+            );
+
+          }
         );
 
-      });
-
-  }, 250);
+    },
+    250
+  );
 }
 
 
-nextQuote.addEventListener("click", function() {
+nextQuote.addEventListener(
+  "click",
+  function() {
 
-  currentQuote++;
+    currentQuote++;
 
-  if (currentQuote >= quotes.length) {
-    currentQuote = 0;
+    if (
+      currentQuote >=
+      quotes.length
+    ) {
+
+      currentQuote = 0;
+
+    }
+
+    showQuote();
+
   }
-
-  changeQuote();
-
-});
+);
 
 
 /* =========================
-   FINAL HEART BUTTON
+   ENVELOPE
+========================= */
+
+const envelopeButton =
+  document.getElementById(
+    "envelopeButton"
+  );
+
+
+envelopeButton.addEventListener(
+  "click",
+  function() {
+
+    envelopeButton.classList.add(
+      "open"
+    );
+
+
+    setTimeout(
+      function() {
+
+        openPage("letterPage");
+
+        setTimeout(
+          function() {
+
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+
+          },
+          200
+        );
+
+      },
+      700
+    );
+
+  }
+);
+
+
+/* =========================
+   FINAL HEART
 ========================= */
 
 const heartButton =
-  document.getElementById("heartButton");
+  document.getElementById(
+    "heartButton"
+  );
 
-heartButton.addEventListener("click", function() {
 
-  openPage("finalPage");
+heartButton.addEventListener(
+  "click",
+  function() {
 
-});
+    openPage("finalPage");
+
+  }
+);
