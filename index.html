@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Little Universe ♡</title>
+  <title>For My Chamgadar ♡</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- PAGE 1 — PASSWORD -->
-  <section id="page1" class="page active">
-    <div class="stars"></div>
+  <!-- PASSWORD PAGE -->
+  <section class="page active" id="passwordPage">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
 
-    <div class="card password-card">
+    <div class="password-box">
       <div class="bat">🦇</div>
 
-      <p class="tiny-label">A LITTLE SECRET</p>
+      <p class="mini-title">A LITTLE SECRET</p>
 
-      <h1>Something<br>for you ♡</h1>
+      <h1>Hey,<br>handsome boyfieee ♡</h1>
 
-      <p class="intro">
-        Before you enter,<br>
-        prove that you're actually you. 👀
+      <p class="password-text">
+        There's something waiting for you...
+        <br>
+        but first, you need to remember something. 👀
       </p>
 
-      <div class="hint-box">
+      <div class="hint">
         <span>HINT 👑</span>
         <p>Your nickname, princess...<br>think about it.</p>
       </div>
@@ -33,159 +35,180 @@
       <input
         type="password"
         id="passwordInput"
-        placeholder="Enter the secret word..."
+        placeholder="Enter the secret word"
         autocomplete="off"
       >
 
-      <button id="unlockButton" class="main-button">
-        Unlock ♡
+      <button id="unlockButton">
+        Enter our little universe ♡
       </button>
 
-      <p id="errorMessage"></p>
+      <p id="wrongPassword"></p>
     </div>
   </section>
 
 
-  <!-- PAGE 2 — FOUR MONTHS -->
-  <section id="page2" class="page">
-    <div class="page-content">
+  <!-- PAGE 2 — OUR STORY -->
+  <section class="page" id="storyPage">
 
-      <p class="page-label">15 · 04 · 2026</p>
+    <div class="page-inner">
 
-      <div class="glow-heart">♡</div>
+      <p class="section-label">15 APRIL 2026</p>
 
-      <p class="soft-title">And then...</p>
+      <div class="big-heart">♡</div>
 
-      <h2>15 April 2026</h2>
+      <h2>
+        The day<br>
+        <span>it all started.</span>
+      </h2>
 
-      <p class="subtitle">
-        The day our little story began.
+      <p class="story-text">
+        Somewhere between all those conversations,
+        teasing, stupid jokes and endless talks...
+        we became <i>us.</i>
       </p>
 
-      <div class="sparkle">✦</div>
-
-      <div class="month-number">
-        <span id="monthNumber">4</span>
-        <small>MONTHS</small>
+      <div class="anniversary-count">
+        <div class="number" id="monthCount">4</div>
+        <div class="month-word">MONTHS</div>
       </div>
 
-      <p class="still-counting">
-        ...and still counting. ♡
+      <p class="counting-text">
+        15 April 2026 → 15 August 2026
       </p>
 
-      <div id="relationshipCounter" class="counter">
+      <div class="live-counter" id="liveCounter">
         Loading...
       </div>
 
-      <button class="next-button" data-next="page3">
+      <button class="continue-btn" data-next="distancePage">
         There's more ♡
       </button>
 
     </div>
+
   </section>
 
 
   <!-- PAGE 3 — DISTANCE -->
-  <section id="page3" class="page">
-    <div class="page-content">
+  <section class="page" id="distancePage">
 
-      <span class="page-number">03</span>
+    <div class="page-inner">
 
-      <p class="page-label">A LITTLE DISTANCE</p>
+      <p class="section-label">OUR LITTLE DISTANCE</p>
 
-      <h2>Miles Apart,<br>Still Us. ♡</h2>
+      <h2>
+        Mathura <span>♡</span> Ranchi
+      </h2>
 
-      <p class="subtitle">
-        Different cities. Same little universe.
+      <p class="distance-intro">
+        Different cities.<br>
+        Same little universe.
       </p>
 
-      <div class="distance-container">
+      <div class="map-line">
 
-        <div class="city">
-          <span class="city-pin">📍</span>
+        <div class="place">
+          <div class="location">📍</div>
           <h3>Mathura</h3>
-          <p>Me ♡</p>
+          <p>Me 🎀</p>
         </div>
 
-        <div class="distance-line">
+        <div class="connection">
           <span>♡</span>
-          <div></div>
-          <small>~1,100 km</small>
-          <div></div>
+          <div class="line"></div>
           <span>♡</span>
         </div>
 
-        <div class="city">
-          <span class="city-pin">📍</span>
+        <div class="place">
+          <div class="location">📍</div>
           <h3>Ranchi</h3>
-          <p>You ♡</p>
+          <p>You 🦇</p>
         </div>
 
       </div>
 
-      <div class="distance-message">
+      <div class="distance-card">
         <p>
-          If distance could disappear for just one day...
+          Maybe there's a lot of distance between us...
         </p>
+
         <strong>
-          I'd hug you really, really tightly. 🥹♡
+          but somehow you still feel close to me. ♡
         </strong>
+
+        <small>
+          And if distance disappeared for just one day...
+        </small>
+
+        <b>
+          I'd hug you really, really tightly. 🥹
+        </b>
       </div>
 
-      <button class="next-button" data-next="page4">
-        Keep going ♡
+      <button class="continue-btn" data-next="quotesPage">
+        A few things about you →
       </button>
 
     </div>
+
   </section>
 
 
   <!-- PAGE 4 — QUOTES -->
-  <section id="page4" class="page">
-    <div class="page-content">
+  <section class="page" id="quotesPage">
 
-      <span class="page-number">04</span>
+    <div class="page-inner">
 
-      <p class="page-label">A FEW THINGS</p>
+      <p class="section-label">JUST A FEW THINGS</p>
 
-      <h2>Things I Think<br>About You. ♡</h2>
+      <h2>
+        Things I think<br>
+        <span>about you. ♡</span>
+      </h2>
 
-      <div class="quote-card">
-        <span class="quote-mark">“</span>
+      <div class="quote-box">
+
+        <div class="quote-symbol">“</div>
 
         <p id="quoteText">
-          He annoys me 90% of the time… but somehow knows exactly when I need him.
+          He annoys me 90% of the time… but somehow knows exactly when I need him. ♡
         </p>
 
-        <span class="quote-mark quote-end">”</span>
+        <div class="quote-symbol closing">”</div>
 
-        <div class="quote-dots" id="quoteDots"></div>
       </div>
 
-      <button id="nextQuoteButton" class="next-button">
+      <div class="dots" id="quoteDots"></div>
+
+      <button class="continue-btn" id="nextQuote">
         Another one ♡
       </button>
 
-      <button class="text-button" data-next="page5">
-        I have something to tell you...
+      <button class="skip-btn" data-next="letterPage">
+        Okay okay, I have something to tell you...
       </button>
 
     </div>
+
   </section>
 
 
   <!-- PAGE 5 — LETTER -->
-  <section id="page5" class="page letter-page">
+  <section class="page letter-page" id="letterPage">
 
-    <div class="letter-wrapper">
+    <div class="letter-container">
 
-      <div class="letter-heading">
-        <p class="page-label">05 · FOR YOU</p>
+      <div class="letter-intro">
+        <p class="section-label">A LETTER FOR YOU</p>
 
-        <h2>A little letter<br>from me to you. 💌</h2>
+        <h2>
+          Okay... now<br>
+          <span>my turn to talk. 💌</span>
+        </h2>
 
         <p>
-          Take your time. There's a lot I want to say.
+          Scroll slowly, bhoundu.
         </p>
       </div>
 
@@ -197,119 +220,135 @@
 
         <h3>Heyyyyyy handsome boyfieee 🎀✨</h3>
 
-        <div class="letter-text">
+        <div class="letter-content">
 
           <p>
-            Seriously, it's been four months. Can't believe that 😭😭
-            Like seriously ohhhh god, itna mast banda mila h mereko,
+            Seriously it's been four months can't believe that 😭😭
+            Like seriously ohhhh god itna mast banda h mila h mereko
             jitna thank you bolu utna kam hai hehe 😝
-            Per mast toh mai bhi hoon, vo bhi aapse jada....
+            per mast toh mai bhi hoon vo bhi aapse jada....
           </p>
 
           <p>
             Thoda cringe cringe hoga toh manage kar lio na 😭
-            Mereko josh aa raha h ache se likhne ka....
+            mereko josh aa rha h aache se likhne ka....
           </p>
 
           <p>
-            First thing, I do miss you a lottttt.
-            I might not say this every time, but I really do miss you a lot.
+            First thing I do miss you a lotttttt.
+            I might not say this everytime but I really do miss you a lott....
           </p>
 
           <p>
-            Call it obsession or whatever, but yk when you aren't online
-            and were gone somewhere for too long, I just always start
-            feeling sooo emotional. Can't explain that, but bada ajeeb
+            Call it obsession or whatever but yk when u aren't online
+            and was gone somewhere for too long I just always start
+            feeling soo emotional can't explain that but bada ajeeb
             sa lagta h 😭😭
           </p>
 
           <p>
-            Dekho tumhari galti hai thik haina, meethi meethi baatein
-            karke fasa liya mereko 👺
+            Dekho tumhari galti hai thik haina meethi meethi baate
+            krke fasa liya mereko 👺
           </p>
 
           <p>
-            🥹 No more jokes, but yk I am sooo grateful to have you.
-            Like ahh, you are sooo understanding, supportive, caring
+            🥹 No more jokes but yk i am sooo grateful to have you
+            like ahh you are soo understanding, supportive, caring
             and what not 😭😭😭
           </p>
 
           <p>
-            U do act like a maniac but still you are the best yk hehe.
-            Jyada hawa mai mat uddna ye sunke 🔪👽✌🏻 okie babu?
+            U do act like maniac but still u are best yk hehe
+            jada hawa mai mat uddna ye sunke 🔪👽✌🏻 okie babu ?
           </p>
 
           <p>
-            Soo ahmm thank you soo much Saksham.
-            Ik sometimes I act rudely or just ignore you,
-            I never mean to yrr 😭
+            Soo ahmm thank you soo much Saksham ik sometimes I act
+            rudely or just ignore you I never mean to yrr 😭
+            bas fir smajh nhi aata na and still after all that
+            u act cool and chill about everything...
           </p>
 
           <p>
-            Bas fir samajh nahi aata na, and still after all that
-            you act cool and chill about everything...
+            Aish yk i want to say many things per fir bhul jaati hu 😭😭😭
           </p>
 
-          <p>
-            Aish yk I want to say many things per fir bhul jaati hu 😭😭😭
-          </p>
-
-          <p class="big-line">
+          <p class="special-line">
             I REALLY LOVE YOU SM YRR 🥹✨🎀
           </p>
 
           <p>
-            And and look, ik you aren't a sharing type person,
-            but kabhi kabhi chalta h babu, bata diya karo 😭
-            Kasam se judge nahi karungi...
+            And and look ik u aren't a sharing type person but kabhi
+            kabhi chalta h babu bata diya karo 😭 kasam se judge nhi
+            karungi ...
           </p>
 
           <p>
-            I also want to be there for you na.
-            I want to take care of you, per aap samajhte nahi bhoundu 🐣
+            I also want to be there for you na ...
+            I want to take care of you per aap samjhte nhi bhoundu 🐣
           </p>
 
           <p>
             Let's try our best and be together forever na 🥹
-            Ufff kya mazeee aayenge aapke saath 😝 hehe
+            ufff kya mazeee aayenge aapke sath 😝 hehe
           </p>
 
         </div>
 
-        <div class="letter-signature">
-          Yours, always ♡
+        <div class="signature">
+          Yours, your tiddi ♡
         </div>
 
       </div>
 
-      <button id="finalRevealButton" class="heart-button">
-        <span>♡</span>
-        <small>One last thing →</small>
-      </button>
+      <div class="final-button-area">
+
+        <p>
+          One last thing...
+        </p>
+
+        <button id="heartButton" class="heart-button">
+          ❤️
+        </button>
+
+        <span>click me →</span>
+
+      </div>
 
     </div>
+
   </section>
 
 
-  <!-- FINAL REVEAL -->
-  <section id="finalPage" class="page final-page">
+  <!-- FINAL PAGE -->
+  <section class="page final-page" id="finalPage">
 
-    <div class="final-sparkles">✦　♡　✦　♡　✦</div>
+    <div class="final-content">
 
-    <p class="final-small">
-      FOUR MONTHS OF US
-    </p>
+      <div class="final-sparkles">
+        ✦　♡　✦　♡　✦
+      </div>
 
-    <h1 class="love-text">
-      I LOVE YOU
-    </h1>
+      <p class="final-label">
+        FOUR MONTHS OF US
+      </p>
 
-    <p class="final-message">
-      Happy 4 months, handsome boyfieee 🎀✨
-    </p>
+      <h1>
+        I LOVE YOU
+      </h1>
 
-    <div class="final-hearts">
-      ♡　♡　♡
+      <p class="final-subtitle">
+        more than all my annoying little words could ever explain. ♡
+      </p>
+
+      <div class="final-date">
+        15 · 04 · 2026 — ∞
+      </div>
+
+      <div class="floating-hearts">
+        ♡　♡　♡
+      </div>
+
     </div>
 
   </section>
