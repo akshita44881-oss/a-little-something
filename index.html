@@ -242,7 +242,182 @@
     .success p {
       margin-top: 10px;
       color: #cfc7dc;
-    }
+    }/* =========================
+   PAGE 2 DESIGN
+========================= */
+
+.page2 {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+  padding: 30px;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 160, 210, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(150, 180, 255, 0.18), transparent 30%),
+    linear-gradient(135deg, #17152c, #302342, #17213d);
+
+  animation: pageAppear 1s ease;
+}
+
+.page2.show {
+  display: flex;
+}
+
+@keyframes pageAppear {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.date-small {
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: #c8bfd5;
+  margin-bottom: 20px;
+}
+
+.calendar-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  font-size: 38px;
+  color: #ffb5dc;
+
+  margin-bottom: 22px;
+
+  animation: softPulse 2s infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.page2 h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #cfc6d8;
+  margin-bottom: 8px;
+}
+
+.page2 h1 {
+  font-size: clamp(38px, 10vw, 64px);
+  margin-bottom: 12px;
+
+  background: linear-gradient(
+    90deg,
+    #ffb5dc,
+    #d7c5ff
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.beginning {
+  font-size: 16px;
+  color: #ddd6e4;
+}
+
+.divider {
+  margin: 25px 0;
+  color: #ffacd8;
+  font-size: 18px;
+}
+
+.months {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.months span {
+  font-size: 75px;
+  line-height: 0.9;
+  font-weight: 700;
+
+  background: linear-gradient(
+    135deg,
+    #ff9ed4,
+    #bda8ff
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.months small {
+  letter-spacing: 7px;
+  color: #d8d0df;
+  margin-top: 8px;
+}
+
+.together {
+  margin-top: 18px;
+  color: #bdb4c7;
+  font-size: 14px;
+}
+
+.counter {
+  margin-top: 22px;
+
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.06);
+
+  color: #e8ddea;
+
+  font-size: 13px;
+
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.next-btn {
+  width: auto;
+  padding: 13px 25px;
+
+  margin-top: 25px;
+
+  background: rgba(255,255,255,0.09);
+
+  border: 1px solid rgba(255,255,255,0.16);
+
+  box-shadow: none;
+}
+
+.next-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
   </style>
 </head>
 
@@ -288,16 +463,43 @@
 
   </div>
 
-  <!-- Success screen -->
-  <div class="success" id="success">
+<!-- PAGE 2 -->
+<div class="page2" id="page2">
 
-    <div class="success-heart">♡</div>
-
-    <h2>Well well well...</h2>
-
-    <p>Looks like you remembered. 😌</p>
-
+  <div class="date-small">
+    15 · 04 · 2026
   </div>
+
+  <div class="calendar-icon">♡</div>
+
+  <h2>And then...</h2>
+
+  <h1>15 April 2026</h1>
+
+  <p class="beginning">
+    The day our little story began.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <div class="months">
+    <span>4</span>
+    <small>MONTHS</small>
+  </div>
+
+  <p class="together">
+    ...and still counting. ♡
+  </p>
+
+  <div class="counter" id="counter">
+    Loading our little timer...
+  </div>
+
+  <button class="next-btn" onclick="goToPage3()">
+    There's more ♡
+  </button>
+
+</div>
 
 
   <script>
@@ -312,17 +514,15 @@
 
       const password = input.value.trim().toLowerCase();
 
-      if (password === "chamgadar") {
+     if (password === "chamgadar") {
 
-        message.innerHTML = "Okayyy... you may enter. ♡";
+  window.location.href = "#page2";
 
-        setTimeout(() => {
-          document.getElementById("success").classList.add("show");
-        }, 700);
+  document.getElementById("card").style.display = "none";
+  document.getElementById("page2").classList.add("show");
 
-        return;
-      }
-
+  return;
+}
       attempts++;
 
       card.classList.remove("shake");
@@ -361,6 +561,44 @@
     });
 
   </script>
+const startDate = new Date("2026-04-15T00:00:00");
 
+function updateCounter() {
+  const now = new Date();
+  const difference = now - startDate;
+
+  if (difference < 0) {
+    document.getElementById("counter").innerHTML =
+      "Our story is about to begin... ♡";
+    return;
+  }
+
+  const days = Math.floor(
+    difference / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (difference / (1000 * 60 * 60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (difference / (1000 * 60)) % 60
+  );
+
+  const seconds = Math.floor(
+    (difference / 1000) % 60
+  );
+
+  document.getElementById("counter").innerHTML =
+    `${days} days · ${hours} hours · ${minutes} minutes · ${seconds} seconds`;
+}
+
+updateCounter();
+
+setInterval(updateCounter, 1000);
+
+function goToPage3() {
+  alert("Page 3 is coming next 👀♡");
+}
 </body>
 </html>
