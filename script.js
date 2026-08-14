@@ -1,7 +1,3 @@
-/* =========================
-   PASSWORD
-========================= */
-
 const PASSWORD = "chamgadar";
 
 const passwordInput = document.getElementById("passwordInput");
@@ -10,28 +6,34 @@ const wrongPassword = document.getElementById("wrongPassword");
 
 let attempts = 0;
 
+
+/* =========================
+   PAGE SWITCHING
+========================= */
+
 function openPage(pageId) {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
   });
 
-  const nextPage = document.getElementById(pageId);
+  const page = document.getElementById(pageId);
 
-  if (nextPage) {
-    nextPage.classList.add("active");
+  if (page) {
+    page.classList.add("active");
+    window.scrollTo(0, 0);
   }
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
 }
 
+
+/* =========================
+   PASSWORD
+========================= */
+
 function checkPassword() {
+  const enteredPassword =
+    passwordInput.value.trim().toLowerCase();
 
-  const entered = passwordInput.value.trim().toLowerCase();
-
-  if (entered === PASSWORD) {
+  if (enteredPassword === PASSWORD) {
 
     wrongPassword.textContent = "";
 
@@ -53,20 +55,18 @@ function checkPassword() {
   box.classList.add("shake");
 
   if (attempts === 1) {
-
     wrongPassword.textContent =
       "Uff bhoundu 😭 try again...";
+  }
 
-  } else if (attempts === 2) {
-
+  else if (attempts === 2) {
     wrongPassword.textContent =
       "Dubara tosis kawroo 😭😭";
+  }
 
-  } else {
-
+  else {
     wrongPassword.textContent =
-      "Princess... THINK. 😭👑🦇";
-
+      "Princess... THINK HARDER 😭👑🦇";
   }
 
   passwordInput.value = "";
@@ -75,26 +75,25 @@ function checkPassword() {
 
 unlockButton.addEventListener("click", checkPassword);
 
-passwordInput.addEventListener("keydown", event => {
-
+passwordInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     checkPassword();
   }
-
 });
 
 
 /* =========================
-   PAGE BUTTONS
+   NEXT PAGE BUTTONS
 ========================= */
 
 document.querySelectorAll("[data-next]").forEach(button => {
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function() {
 
-    const target = button.getAttribute("data-next");
+    const targetPage =
+      this.getAttribute("data-next");
 
-    openPage(target);
+    openPage(targetPage);
 
   });
 
@@ -102,35 +101,42 @@ document.querySelectorAll("[data-next]").forEach(button => {
 
 
 /* =========================
-   15 APRIL → 15 AUGUST
+   ANNIVERSARY COUNTER
 ========================= */
 
-const startDate = new Date("2026-04-15T00:00:00");
+const startDate =
+  new Date("2026-04-15T00:00:00");
 
 function updateCounter() {
 
   const now = new Date();
 
-  const difference = now - startDate;
+  const difference =
+    now - startDate;
 
-  const counter = document.getElementById("liveCounter");
-  const monthCount = document.getElementById("monthCount");
+  const monthCount =
+    document.getElementById("monthCount");
+
+  const liveCounter =
+    document.getElementById("liveCounter");
 
   if (difference < 0) {
 
     monthCount.textContent = "0";
 
-    counter.textContent =
+    liveCounter.textContent =
       "Our story is about to begin... ♡";
 
     return;
   }
 
   let years =
-    now.getFullYear() - startDate.getFullYear();
+    now.getFullYear() -
+    startDate.getFullYear();
 
   let months =
-    now.getMonth() - startDate.getMonth();
+    now.getMonth() -
+    startDate.getMonth();
 
   if (now.getDate() < startDate.getDate()) {
     months--;
@@ -144,25 +150,34 @@ function updateCounter() {
   const totalMonths =
     years * 12 + months;
 
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
+  const days =
+    Math.floor(
+      difference /
+      (1000 * 60 * 60 * 24)
+    );
 
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
+  const hours =
+    Math.floor(
+      (difference /
+      (1000 * 60 * 60)) % 24
+    );
 
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
+  const minutes =
+    Math.floor(
+      (difference /
+      (1000 * 60)) % 60
+    );
 
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
+  const seconds =
+    Math.floor(
+      (difference /
+      1000) % 60
+    );
 
-  monthCount.textContent = totalMonths;
+  monthCount.textContent =
+    totalMonths;
 
-  counter.textContent =
+  liveCounter.textContent =
     `${days} days · ${hours} hours · ${minutes} minutes · ${seconds} seconds`;
 }
 
@@ -193,16 +208,22 @@ const quotes = [
 
 let currentQuote = 0;
 
-const quoteText = document.getElementById("quoteText");
-const quoteDots = document.getElementById("quoteDots");
-const nextQuote = document.getElementById("nextQuote");
+const quoteText =
+  document.getElementById("quoteText");
+
+const quoteDots =
+  document.getElementById("quoteDots");
+
+const nextQuote =
+  document.getElementById("nextQuote");
 
 
-/* CREATE DOTS */
+/* CREATE QUOTE DOTS */
 
 quotes.forEach((quote, index) => {
 
-  const dot = document.createElement("span");
+  const dot =
+    document.createElement("span");
 
   dot.classList.add("dot");
 
@@ -221,29 +242,28 @@ function changeQuote() {
 
   quoteText.style.opacity = "0";
 
-  setTimeout(() => {
+  setTimeout(function() {
 
     quoteText.textContent =
       quotes[currentQuote];
 
     quoteText.style.opacity = "1";
 
-    document.querySelectorAll(".dot").forEach(
-      (dot, index) => {
+    document.querySelectorAll(".dot")
+      .forEach(function(dot, index) {
 
         dot.classList.toggle(
           "active",
           index === currentQuote
         );
 
-      }
-    );
+      });
 
   }, 250);
-
 }
 
-nextQuote.addEventListener("click", () => {
+
+nextQuote.addEventListener("click", function() {
 
   currentQuote++;
 
@@ -257,13 +277,13 @@ nextQuote.addEventListener("click", () => {
 
 
 /* =========================
-   FINAL HEART REVEAL
+   FINAL HEART BUTTON
 ========================= */
 
 const heartButton =
   document.getElementById("heartButton");
 
-heartButton.addEventListener("click", () => {
+heartButton.addEventListener("click", function() {
 
   openPage("finalPage");
 
