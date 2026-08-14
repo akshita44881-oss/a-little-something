@@ -3,602 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Something For You ♡</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 160, 210, 0.25), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(150, 180, 255, 0.25), transparent 30%),
-        linear-gradient(135deg, #17152c, #302342, #17213d);
-      color: white;
-      position: relative;
-    }
-
-    /* Floating background hearts */
-    .heart {
-      position: absolute;
-      bottom: -30px;
-      font-size: 18px;
-      opacity: 0.5;
-      animation: floatUp linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0.6;
-      }
-
-      80% {
-        opacity: 0.5;
-      }
-
-      to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Main card */
-    .card {
-      width: min(90%, 420px);
-      padding: 42px 28px;
-      text-align: center;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      animation: appear 1s ease;
-      z-index: 2;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .bat {
-      font-size: 58px;
-      margin-bottom: 15px;
-      animation: batFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes batFloat {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-    h1 {
-      font-size: 29px;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      color: #ddd6e9;
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .hint {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 22px;
-      font-size: 14px;
-      color: #f1dff0;
-    }
-
-    .hint span {
-      display: block;
-      font-size: 12px;
-      color: #aaa1b8;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    input {
-      width: 100%;
-      padding: 15px 18px;
-      border: none;
-      outline: none;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.12);
-      color: white;
-      font-size: 16px;
-      text-align: center;
-      border: 1px solid transparent;
-      transition: 0.3s;
-    }
-
-    input::placeholder {
-      color: #aaa4b5;
-    }
-
-    input:focus {
-      border-color: rgba(255, 180, 225, 0.7);
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 15px;
-      border: none;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #ff8fcf, #b99cff);
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 8px 25px rgba(200, 130, 220, 0.25);
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(200, 130, 220, 0.4);
-    }
-
-    button:active {
-      transform: scale(0.97);
-    }
-
-    .message {
-      min-height: 25px;
-      margin-top: 15px;
-      font-size: 14px;
-      color: #ffb4d8;
-      transition: 0.3s;
-    }
-
-    .shake {
-      animation: shake 0.4s;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
-    }
-
-    /* Success screen */
-    .success {
-      display: none;
-      position: fixed;
-      inset: 0;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background: #17152c;
-      z-index: 10;
-      text-align: center;
-    }
-
-    .success.show {
-      display: flex;
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .success-heart {
-      font-size: 75px;
-      animation: heartbeat 1.2s infinite;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.18);
-      }
-    }
-
-    .success h2 {
-      font-size: 34px;
-      margin-top: 20px;
-    }
-
-    .success p {
-      margin-top: 10px;
-      color: #cfc7dc;
-    }/* =========================
-   PAGE 2 DESIGN
-========================= */
-
-.page2 {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  text-align: center;
-  padding: 30px;
-
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 160, 210, 0.18), transparent 30%),
-    radial-gradient(circle at 80% 80%, rgba(150, 180, 255, 0.18), transparent 30%),
-    linear-gradient(135deg, #17152c, #302342, #17213d);
-
-  animation: pageAppear 1s ease;
-}
-
-.page2.show {
-  display: flex;
-}
-
-@keyframes pageAppear {
-  from {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.date-small {
-  font-size: 13px;
-  letter-spacing: 5px;
-  color: #c8bfd5;
-  margin-bottom: 20px;
-}
-
-.calendar-icon {
-  width: 70px;
-  height: 70px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-
-  font-size: 38px;
-  color: #ffb5dc;
-
-  margin-bottom: 22px;
-
-  animation: softPulse 2s infinite;
-}
-
-@keyframes softPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-.page2 h2 {
-  font-size: 18px;
-  font-weight: 400;
-  color: #cfc6d8;
-  margin-bottom: 8px;
-}
-
-.page2 h1 {
-  font-size: clamp(38px, 10vw, 64px);
-  margin-bottom: 12px;
-
-  background: linear-gradient(
-    90deg,
-    #ffb5dc,
-    #d7c5ff
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.beginning {
-  font-size: 16px;
-  color: #ddd6e4;
-}
-
-.divider {
-  margin: 25px 0;
-  color: #ffacd8;
-  font-size: 18px;
-}
-
-.months {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.months span {
-  font-size: 75px;
-  line-height: 0.9;
-  font-weight: 700;
-
-  background: linear-gradient(
-    135deg,
-    #ff9ed4,
-    #bda8ff
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.months small {
-  letter-spacing: 7px;
-  color: #d8d0df;
-  margin-top: 8px;
-}
-
-.together {
-  margin-top: 18px;
-  color: #bdb4c7;
-  font-size: 14px;
-}
-
-.counter {
-  margin-top: 22px;
-
-  padding: 12px 18px;
-
-  border-radius: 14px;
-
-  background: rgba(255,255,255,0.06);
-
-  color: #e8ddea;
-
-  font-size: 13px;
-
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.next-btn {
-  width: auto;
-  padding: 13px 25px;
-
-  margin-top: 25px;
-
-  background: rgba(255,255,255,0.09);
-
-  border: 1px solid rgba(255,255,255,0.16);
-
-  box-shadow: none;
-}
-
-.next-btn:hover {
-  background: rgba(255,255,255,0.15);
-}
-  </style>
+  <title>Our Little Universe ♡</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Background hearts -->
-  <div class="heart" style="left: 8%; animation-duration: 9s; animation-delay: 1s;">♡</div>
-  <div class="heart" style="left: 20%; animation-duration: 12s; animation-delay: 3s;">♥</div>
-  <div class="heart" style="left: 35%; animation-duration: 10s; animation-delay: 0s;">♡</div>
-  <div class="heart" style="left: 55%; animation-duration: 13s; animation-delay: 2s;">♥</div>
-  <div class="heart" style="left: 72%; animation-duration: 11s; animation-delay: 4s;">♡</div>
-  <div class="heart" style="left: 88%; animation-duration: 9s; animation-delay: 1s;">♥</div>
+  <!-- PAGE 1: SECRET ENTRY -->
+  <section id="page1" class="page active">
 
-  <!-- Main login card -->
-  <div class="card" id="card">
+    <div class="floating-hearts">♡ ♥ ♡ ♥ ♡</div>
 
-    <div class="bat">🦇</div>
+    <div class="card">
+      <div class="bat">🦇</div>
 
-    <h1>A little secret...</h1>
+      <h1>A little secret...</h1>
 
-    <p class="subtitle">
-      Before you enter,<br>
-      you gotta prove you're actually you. 👀
-    </p>
+      <p>
+        Before you enter,<br>
+        you gotta prove you're actually you. 👀
+      </p>
 
-    <div class="hint">
-      <span>Hint</span>
-      What does Batman have that flies? 🦇
+      <div class="hint">
+        <span>HINT</span>
+        What does Batman have that flies? 🦇
+      </div>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter the secret word..."
+        autocomplete="off"
+      >
+
+      <button id="unlockBtn">UNLOCK ♡</button>
+
+      <p id="errorMessage"></p>
     </div>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Enter the secret word..."
-      autocomplete="off"
-    >
+  </section>
 
-    <button onclick="checkPassword()">
-      UNLOCK ♡
+
+  <!-- PAGE 2: FOUR MONTHS -->
+  <section id="page2" class="page">
+
+    <div class="date">15 · 04 · 2026</div>
+
+    <div class="heart-icon">♡</div>
+
+    <p class="small-title">And then...</p>
+
+    <h2>15 April 2026</h2>
+
+    <p class="subtitle">
+      The day our little story began.
+    </p>
+
+    <div class="divider">✦</div>
+
+    <div class="months">
+      <strong>4</strong>
+      <span>MONTHS</span>
+    </div>
+
+    <p class="counting">...and still counting. ♡</p>
+
+    <div id="counter">Loading...</div>
+
+    <button class="nextBtn" data-next="page3">
+      There's more ♡
     </button>
 
-    <div class="message" id="message"></div>
-
-  </div>
-
-<!-- PAGE 2 -->
-<div class="page2" id="page2">
-
-  <div class="date-small">
-    15 · 04 · 2026
-  </div>
-
-  <div class="calendar-icon">♡</div>
-
-  <h2>And then...</h2>
-
-  <h1>15 April 2026</h1>
-
-  <p class="beginning">
-    The day our little story began.
-  </p>
-
-  <div class="divider">✦</div>
-
-  <div class="months">
-    <span>4</span>
-    <small>MONTHS</small>
-  </div>
-
-  <p class="together">
-    ...and still counting. ♡
-  </p>
-
-  <div class="counter" id="counter">
-    Loading our little timer...
-  </div>
-
-  <button class="next-btn" onclick="goToPage3()">
-    There's more ♡
-  </button>
-
-</div>
+  </section>
 
 
-  <script>
+  <!-- PAGE 3: LONG DISTANCE -->
+  <section id="page3" class="page">
 
-    let attempts = 0;
+    <div class="page-number">03</div>
 
-    function checkPassword() {
+    <h2>Miles Apart,<br>Still Us. 🌎</h2>
 
-      const input = document.getElementById("password");
-      const card = document.getElementById("card");
-      const message = document.getElementById("message");
+    <p class="subtitle">
+      Different cities. Same little universe.
+    </p>
 
-      const password = input.value.trim().toLowerCase();
+    <div class="locations">
 
-     if (password === "chamgadar") {
+      <div class="location">
+        <div class="pin">📍</div>
+        <h3>Mathura</h3>
+        <p>Me ♡</p>
+      </div>
 
-  window.location.href = "#page2";
+      <div class="distance">
+        <span>♡</span>
+        <div class="line"></div>
+        <small>~1,100 km</small>
+        <div class="line"></div>
+        <span>♡</span>
+      </div>
 
-  document.getElementById("card").style.display = "none";
-  document.getElementById("page2").classList.add("show");
+      <div class="location">
+        <div class="pin">📍</div>
+        <h3>Ranchi</h3>
+        <p>You ♡</p>
+      </div>
 
-  return;
-}
-      attempts++;
+    </div>
 
-      card.classList.remove("shake");
+    <div class="memory-box">
+      <p>
+        Distance is just a number<br>
+        when someone feels this close. ♡
+      </p>
+    </div>
 
-      // Restart animation
-      void card.offsetWidth;
+    <button class="nextBtn" data-next="page4">
+      Keep going ♡
+    </button>
 
-      card.classList.add("shake");
+  </section>
 
-      if (attempts === 1) {
 
-        message.innerHTML = "Uff bhoundu 😭 try again...";
+  <!-- PAGE 4: QUOTES -->
+  <section id="page4" class="page">
 
-      } else if (attempts === 2) {
+    <div class="page-number">04</div>
 
-        message.innerHTML = "Dubara tosis kawroo 😭💀";
+    <h2>Little Things<br>I Love. 💭</h2>
 
-      } else {
+    <p class="subtitle">
+      Temporary quotes for now... 👀
+    </p>
 
-        message.innerHTML =
-          "😭 it's literally the Batman hint. THINK. 🦇";
+    <div class="quote-card">
 
-      }
+      <div class="quote-mark">“</div>
 
-      input.value = "";
+      <p id="quoteText">
+        Somehow, you became my favourite part of ordinary days.
+      </p>
 
-    }
+      <div class="quote-mark end">”</div>
 
-    // Press Enter to unlock
-    document.getElementById("password").addEventListener("keydown", function(event) {
+    </div>
 
-      if (event.key === "Enter") {
-        checkPassword();
-      }
+    <button id="quoteBtn" class="nextBtn">
+      Another one ♡
+    </button>
 
-    });
+    <button class="nextBtn secondary" data-next="page5">
+      One last thing...
+    </button>
 
-  </script>
-const startDate = new Date("2026-04-15T00:00:00");
+  </section>
 
-function updateCounter() {
-  const now = new Date();
-  const difference = now - startDate;
 
-  if (difference < 0) {
-    document.getElementById("counter").innerHTML =
-      "Our story is about to begin... ♡";
-    return;
-  }
+  <!-- PAGE 5: LETTER -->
+  <section id="page5" class="page">
 
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
+    <div class="page-number">05</div>
 
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
+    <div class="envelope" id="envelope">
+      💌
+    </div>
 
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
+    <h2>One last thing...</h2>
 
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
+    <p class="subtitle">
+      Open this when you're ready. ♡
+    </p>
 
-  document.getElementById("counter").innerHTML =
-    `${days} days · ${hours} hours · ${minutes} minutes · ${seconds} seconds`;
-}
+    <button id="openLetter" class="nextBtn">
+      Open my letter 💌
+    </button>
 
-updateCounter();
+    <div id="letter" class="letter">
 
-setInterval(updateCounter, 1000);
+      <div class="letter-top">
+        15 · 08 · 2026
+      </div>
 
-function goToPage3() {
-  alert("Page 3 is coming next 👀♡");
-}
+      <h3>Happy 4 Months, idiot. ♡</h3>
+
+      <p>
+        This is just a little temporary message for now...
+      </p>
+
+      <p>
+        The real letter is coming once I write everything
+        I actually want to tell you.
+      </p>
+
+      <p>
+        Until then, just know that these four months
+        mean a lot to me. ♡
+      </p>
+
+      <div class="signature">
+        — yours ♡
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script src="script.js"></script>
+
 </body>
 </html>
